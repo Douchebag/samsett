@@ -10,19 +10,29 @@ var morphing = function() {
 		{ value: '50,200 145,200 160,200 175,200 270,200 160,10 160,10' }
 	  ],
 	easing: 'easeOutQuad',
-	duration: 5000,
+	duration: 1500,
 	loop: false
 });
-staggeringEasing();
+easingTriangle();
+easingEye();
 lineDrawing();
 colorsExamples();
 }
 
-var staggeringEasing = function() {
+var easingEye = function() {
   anime({
-    targets: '.easing',
-    translateX: 100,
+    targets: '.eye',
+    translateX: 50,
 		translateY: 30,
+		duration: 1500,
+    delay: anime.stagger(300, {easing: 'spring'})
+  });
+}
+
+var easingTriangle = function() {
+  anime({
+    targets: '.polymorph',
+    translateX: -50,
     delay: anime.stagger(300, {easing: 'spring'})
   });
 }
@@ -32,7 +42,7 @@ anime({
   targets: '.drawing path',
   strokeDashoffset: [anime.setDashoffset, 0],
   easing: 'easeInOutSine',
-  duration: 2500,
+  duration: 1000,
   delay: function(el, i) { return i * 250 },
   direction: 'reverse',
   loop: 1
@@ -44,5 +54,11 @@ var colorsExamples = function() {
 anime.timeline({
   loop: false
 })
-.add({targets: '.drawing path', fill: 'none'});
+.add({targets: '.drawing path', fill: 'none'})
+}
+
+var test = function() {
+	anime.set('.pyraLines path', {
+		opacity: 0.2
+	});
 }
