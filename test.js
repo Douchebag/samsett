@@ -16,7 +16,7 @@ var morphing = function() {
 easingTriangle();
 easingEye();
 lineDrawing();
-colorsExamples();
+pyramid();
 }
 
 var easingEye = function() {
@@ -45,20 +45,21 @@ anime({
   duration: 1000,
   delay: function(el, i) { return i * 250 },
   direction: 'reverse',
+	fill: 'none',
   loop: 1
 });
-
 }
 
-var colorsExamples = function() {
-anime.timeline({
-  loop: false
-})
-.add({targets: '.drawing path', fill: 'none'})
-}
 
-var test = function() {
-	anime.set('.pyraLines path', {
+var pyramid = function() {
+	anime({
+	  targets: '.pyraLines path',
+	  strokeDashoffset: [anime.setDashoffset, 0],
+	  easing: 'easeInOutSine',
+	  duration: 3000,
+	  delay: function(el, i) { return i * 250 },
+	  direction: 'forward',
+	  loop: 1,
 		opacity: 0.2
 	});
 }
